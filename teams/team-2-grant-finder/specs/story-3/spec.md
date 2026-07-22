@@ -13,6 +13,7 @@ We are implementing this because the core value of the grant finder is not just 
 1. Each grant result must explain the reason for eligibility or ineligibility in plain language.
 2. Ineligible grants must clearly state the rule or condition that was not met.
 3. Eligible and ineligible results must be distinguished using text-based cues rather than colour alone.
+4. Each rule failure should display a maximum of 256 characters.
 
 ## Non-functional requirements
 - Accessibility: the distinction between eligible and ineligible grants must be understandable by screen-reader and keyboard users without relying on colour alone; status text and explanations should be available through semantic structure and announced when results change.
@@ -36,5 +37,3 @@ We are implementing this because the core value of the grant finder is not just 
 ## Out of scope
 - Detailed policy interpretation beyond the sample rules.
 
-## Open questions
-- How much detail should be shown for each rule failure?
