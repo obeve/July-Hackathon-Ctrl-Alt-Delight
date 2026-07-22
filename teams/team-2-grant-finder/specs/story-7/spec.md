@@ -9,13 +9,21 @@ A user can open a placeholder details page for each grant to learn more.
 3. The link text must be descriptive and not generic.
 
 ## Non-functional requirements
-- Accessibility: links must be keyboard reachable and show clear focus styles.
-- Security: the link must not rely on live websites in tests.
+- Accessibility: each details link must have descriptive text, be keyboard reachable, show a clear focus state, and use semantic link markup; the target page should preserve a logical heading structure and accessible navigation for screen-reader users.
+- Security: the link must not rely on live websites in tests; the destination must be a safe local fixture or in-app route, and no secrets or credentials should be exposed through the link or surrounding content.
 - Performance / reliability: the page should load quickly from the local fixture content.
 
 ## Acceptance criteria
 - Given a grant card is shown, when the user selects the details link, then the placeholder details page opens.
 - Given the link is focused, when the user tabs to it, then the focus state is visible.
+- Given the details link is reached by keyboard, when the user activates it, then the destination is announced clearly and the focus remains predictable.
+- Given the details link is used, when the target page loads, then it remains a safe local fixture or in-app route and no sensitive data is exposed.
+
+## Security checklist
+- The details link points only to a safe local fixture or in-app route.
+- No secrets, credentials, or personal data are exposed through the link target.
+- The destination page is rendered safely and does not rely on live external content.
+- No unsafe query parameters or user-controlled data are used in navigation.
 
 ## Out of scope
 - Deep-linking to live grant websites.
