@@ -36,6 +36,7 @@ We are implementing this because users often want to understand not just whether
 
 ## Out of scope
 - Multiple sorting options beyond amount.
+- Exporting, sharing, or downloading results as a report.
 
 ## Implementation notes
 - Added an accessible `select` control labelled "Sort results" in `GrantFinder.razor` to toggle between the default eligibility-first ordering and a highest-first amount ordering.

@@ -1,3 +1,4 @@
+@page "/"
 @using Team2GrantFinder.Core
 
 @*
@@ -17,6 +18,20 @@
 
 <section aria-labelledby="finder-heading">
     <h2 id="finder-heading">Check which grants you may be eligible for</h2>
+
+    <section class="intro-guidance" aria-labelledby="guidance-heading">
+        <h3 id="guidance-heading">How to use this tool</h3>
+        <p>Enter basic details about your business and select <strong>Find grants</strong> to see which sample grants may match.</p>
+        <ul>
+            <li>Provide your state, industry, number of employees, annual turnover and years trading.</li>
+            <li>The results use embedded sample data and are indicative only.</li>
+        </ul>
+    </section>
+
+    <section class="disclaimer" role="note" aria-labelledby="disclaimer-heading">
+        <h4 id="disclaimer-heading">Disclaimer</h4>
+        <p>This tool provides indicative results only and uses sample data for demonstration purposes. It is not official eligibility advice.</p>
+    </section>
 
     <form @onsubmit="HandleSubmit" @onsubmit:preventDefault="true">
         @if (_errors.Count > 0)
@@ -139,6 +154,9 @@
                             </p>
                             <p>
                                 <strong>Amount:</strong> $@Eligibility.FormatMoney(result.Grant.Amount)
+                            </p>
+                            <p>
+                                <a class="details-link" href="/grants/@result.Grant.Id">View details for @result.Grant.Name</a>
                             </p>
                             @if (result.ReasonsFor.Count > 0)
                             {
