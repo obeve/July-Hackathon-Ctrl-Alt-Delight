@@ -1,0 +1,56 @@
+@page "/grants/{id}"
+@using Team2GrantFinder.Core
+
+@inherits Microsoft.AspNetCore.Components.ComponentBase
+
+<section aria-labelledby="grant-details-heading">
+    @if (_grant is null)
+    {
+        <h2 id="grant-details-heading">Grant not found</h2>
+        <p>The requested grant could not be found. Return to the <a href="/">grant finder</a>.</p>
+    }
+    else
+    {
+        <h2 id="grant-details-heading">@_grant.Name</h2>
+        <p class="grant-amount"><strong>Amount:</strong> $@Eligibility.FormatMoney(_grant.Amount)</p>
+        <p>@_grant.Description</p>
+        <h3>Eligibility summary</h3>
+        <ul>
+            @if (_grant.EligibleStates is not null)
+            {
+                <li>Available in: @string.Join(", ", _grant.EligibleStates)</li>
+            }
+            @if (_grant.EligibleIndustries is not null)
+            {
+                <li>Industries: @string.Join(", ", _grant.EligibleIndustries)</li>
+            }
+            @if (_grant.MaxEmployees is not null)
+            {
+                <li>Maximum employees: @_grant.MaxEmployees</li>
+            }
+            @if (_grant.MaxTurnover is not null)
+            {
+                <li>Maximum turnover: $@Eligibility.FormatMoney(_grant.MaxTurnover.Value)</li>
+            }
+            @if (_grant.MinYearsTrading is not null)
+            {
+                <li>Minimum years trading: @_grant.MinYearsTrading</li>
+            }
+        </ul>
+
+        <p><a href="/">Back to results</a></p>
+    }
+</section>
+
+@code {
+    [Parameter]
+    public string id { get; set; } = string.Empty;
+
+    private Grant? _grant;
+
+    protected override void OnParametersSet()
+    {
+        // Safe lookup from the already-loaded fixture (trusted data).
+        _grant = Eligibility.Grants.SingleOrDefault(g => string.Equals(g.Id, id, StringComparison.OrdinalIgnoreCase));
+    }
+}

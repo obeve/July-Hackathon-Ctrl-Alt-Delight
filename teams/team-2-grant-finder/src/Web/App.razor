@@ -1,5 +1,6 @@
-@* Root component — composes the accessible grant eligibility checker.
-   Kept intentionally simple (no router): this is a single-page demo. *@
+@* Root component with routing so details pages render at /grants/{id} *@
+@using Microsoft.AspNetCore.Components.Routing
+@using Microsoft.AspNetCore.Components
 
 <header>
     <div class="container">
@@ -11,7 +12,15 @@
 </header>
 
 <main class="container" id="main">
-    <GrantFinder />
+    <Router AppAssembly="@typeof(Program).Assembly">
+        <Found Context="routeData">
+            <RouteView RouteData="@routeData" />
+        </Found>
+        <NotFound>
+            <h2>Page not found</h2>
+            <p>Return to the <a href="/">grant finder</a>.</p>
+        </NotFound>
+    </Router>
 </main>
 
 <footer class="container">

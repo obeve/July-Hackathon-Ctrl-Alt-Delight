@@ -1,3 +1,4 @@
+@page "/"
 @using Team2GrantFinder.Core
 
 @*
@@ -77,27 +78,48 @@
     <div aria-live="polite" class="results">
         @if (_results is not null)
         {
-            var displayedResults = _results.Where(r => !_eligibleOnly || r.Eligible).ToList();
             var eligibleCount = _results.Count(r => r.Eligible);
 
             <div class="results-controls">
                 <label class="checkbox-label">
                     <input type="checkbox"
                            role="switch"
-                           aria-checked="@(_eligibleOnly ? "true" : "false")"
+                           aria-checked="@(_eligibleOnly.ToString().ToLower())"
                            aria-controls="results"
                            @bind="_eligibleOnly" />
                     eligible only
                 </label>
-                <!-- Visually hidden live region to announce the toggle state explicitly -->
+
+                <div class="sort-control">
+                    <label for="sort-select">Sort results</label>
+                        <select id="sort-select"
+                            @bind="_sort"
+                            aria-controls="results">
+                        <option value="Default">Default (Eligibility-first)</option>
+                        <option value="AmountDescending">Sort by amount (Highest-first)</option>
+                    </select>
+                </div>
+
+                <!-- Visually hidden live region to announce the toggle and sort state explicitly -->
                 <div style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;" aria-live="polite">
                     @(_eligibleOnly ? "Showing only eligible grants" : "Showing all grants")
+                    @if (_sort == SortOption.AmountDescending)
+                    {
+                        <span> — sorted by amount</span>
+                    }
                 </div>
             </div>
 
-            <h3>@displayedResults.Count of @_results.Count grants match your business</h3>
+                // Compute displayed results on a copy so we never mutate the source `_results`.
+                var displayedResultsLocal = _results.Where(r => !_eligibleOnly || r.Eligible).ToList();
+                if (_sort == SortOption.AmountDescending)
+                {
+                    displayedResultsLocal = displayedResultsLocal.OrderByDescending(r => r.Grant.Amount).ToList();
+                }
+
+            <h3>@displayedResultsLocal.Count of @_results.Count grants match your business@( _sort == SortOption.AmountDescending ? " — sorted by amount" : string.Empty)</h3>
             <ul class="grant-list">
-                @foreach (var result in displayedResults)
+                @foreach (var result in displayedResultsLocal)
                 {
                     <li>
                         <article class="@(result.Eligible ? "grant-card grant-card--eligible" : "grant-card grant-card--ineligible")">
@@ -108,6 +130,9 @@
                             </p>
                             <p>
                                 <strong>Amount:</strong> $@Eligibility.FormatMoney(result.Grant.Amount)
+                            </p>
+                            <p>
+                                <a class="details-link" href="/grants/@result.Grant.Id">View details for @result.Grant.Name</a>
                             </p>
                             @if (result.ReasonsFor.Count > 0)
                             {
@@ -152,9 +177,17 @@
     }
 
     private readonly FormValues _form = new();
+    private enum SortOption { Default, AmountDescending }
+    private SortOption _sort = SortOption.Default;
     private Dictionary<string, string> _errors = new();
     private IReadOnlyList<EligibilityResult>? _results;
     private bool _eligibleOnly = false;
+
+    private void OnSortChanged(Microsoft.AspNetCore.Components.ChangeEventArgs e)
+    {
+        // The select binding will update `_sort`; trigger a re-render and keep focus visible.
+        StateHasChanged();
+    }
 
     private string AriaInvalid(string field) => _errors.ContainsKey(field) ? "true" : "false";
 
