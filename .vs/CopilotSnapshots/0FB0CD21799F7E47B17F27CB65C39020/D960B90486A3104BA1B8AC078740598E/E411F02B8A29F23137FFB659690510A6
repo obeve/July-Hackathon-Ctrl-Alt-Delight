@@ -1,4 +1,4 @@
-@using Team2GrantFinder.Core
+﻿@using Team2GrantFinder.Core
 
 @*
     Accessible grant eligibility checker.
@@ -82,17 +82,9 @@
 
             <div class="results-controls">
                 <label class="checkbox-label">
-                    <input type="checkbox"
-                           role="switch"
-                           aria-checked="@(_eligibleOnly ? "true" : "false")"
-                           aria-controls="results"
-                           @bind="_eligibleOnly" />
-                    eligible only
+                    <input type="checkbox" @bind="_eligibleOnly" />
+                    Show only eligible grants
                 </label>
-                <!-- Visually hidden live region to announce the toggle state explicitly -->
-                <div style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;" aria-live="polite">
-                    @(_eligibleOnly ? "Showing only eligible grants" : "Showing all grants")
-                </div>
             </div>
 
             <h3>@displayedResults.Count of @_results.Count grants match your business</h3>
@@ -154,7 +146,6 @@
     private readonly FormValues _form = new();
     private Dictionary<string, string> _errors = new();
     private IReadOnlyList<EligibilityResult>? _results;
-    private bool _eligibleOnly = false;
 
     private string AriaInvalid(string field) => _errors.ContainsKey(field) ? "true" : "false";
 

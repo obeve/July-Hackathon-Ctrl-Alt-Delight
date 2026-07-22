@@ -1,4 +1,4 @@
-@using Team2GrantFinder.Core
+﻿@using Team2GrantFinder.Core
 
 @*
     Accessible grant eligibility checker.
@@ -77,27 +77,10 @@
     <div aria-live="polite" class="results">
         @if (_results is not null)
         {
-            var displayedResults = _results.Where(r => !_eligibleOnly || r.Eligible).ToList();
             var eligibleCount = _results.Count(r => r.Eligible);
-
-            <div class="results-controls">
-                <label class="checkbox-label">
-                    <input type="checkbox"
-                           role="switch"
-                           aria-checked="@(_eligibleOnly ? "true" : "false")"
-                           aria-controls="results"
-                           @bind="_eligibleOnly" />
-                    eligible only
-                </label>
-                <!-- Visually hidden live region to announce the toggle state explicitly -->
-                <div style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;" aria-live="polite">
-                    @(_eligibleOnly ? "Showing only eligible grants" : "Showing all grants")
-                </div>
-            </div>
-
-            <h3>@displayedResults.Count of @_results.Count grants match your business</h3>
+            <h3>@eligibleCount of @_results.Count grants match your business</h3>
             <ul class="grant-list">
-                @foreach (var result in displayedResults)
+                @foreach (var result in _results)
                 {
                     <li>
                         <article class="@(result.Eligible ? "grant-card grant-card--eligible" : "grant-card grant-card--ineligible")">
@@ -154,7 +137,6 @@
     private readonly FormValues _form = new();
     private Dictionary<string, string> _errors = new();
     private IReadOnlyList<EligibilityResult>? _results;
-    private bool _eligibleOnly = false;
 
     private string AriaInvalid(string field) => _errors.ContainsKey(field) ? "true" : "false";
 
