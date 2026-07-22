@@ -16,7 +16,7 @@ We are implementing this because the core value of the grant finder is not just 
 
 ## Non-functional requirements
 - Accessibility: the distinction between eligible and ineligible grants must be understandable by screen-reader and keyboard users without relying on colour alone; status text and explanations should be available through semantic structure and announced when results change.
-- Security: only validated and safe content should be displayed; grant explanations must be generated from trusted data and rendered without unsafe HTML, string-based injection, or other unsafe DOM usage.
+- Security: only validated and safe content should be displayed; grant explanations must be generated from trusted data and rendered without unsafe HTML, string-based injection, or other unsafe DOM usage; any untrusted values must be encoded or rendered through safe UI components, and errors must remain generic rather than exposing internal details.
 - Performance / reliability: explanations should be available without delay after results are generated.
 
 ## Acceptance criteria
@@ -30,6 +30,8 @@ We are implementing this because the core value of the grant finder is not just 
 - No unsafe HTML, string-based injection, or direct DOM injection is used for grant content.
 - No secrets or credentials are exposed through the result content.
 - Output is encoded or rendered through safe UI mechanisms.
+- User-facing errors remain generic and do not leak stack traces or internal implementation details.
+- The implementation uses only necessary, maintained dependencies.
 
 ## Out of scope
 - Detailed policy interpretation beyond the sample rules.

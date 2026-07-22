@@ -16,7 +16,7 @@ We are implementing this because a grant-finder form should guide users through 
 
 ## Non-functional requirements
 - Accessibility: validation messages must be linked to the relevant field with appropriate ARIA attributes, announced to assistive technology, and presented without relying on colour alone; interactive controls must remain keyboard operable with visible focus indicators and clear labels or accessible names.
-- Security: invalid input must not be processed or stored; validation must occur at the boundary for type, length, format, and range; any validation logic should be easy to review and should not require secrets or external credentials.
+- Security: invalid input must not be processed or stored; validation must occur at every boundary for type, length, format, and range; any validation logic should be easy to review and should not require secrets or external credentials; malformed input must not cause crashes or expose implementation detail through error messages.
 - Performance / reliability: validation should appear immediately and not block the page.
 
 ## Acceptance criteria
@@ -27,10 +27,12 @@ We are implementing this because a grant-finder form should guide users through 
 - Given invalid input, when the form is processed, then the value is rejected before it is used or persisted.
 
 ## Security checklist
-- Validation occurs at the boundary for type, length, format, and range.
+- Validation occurs at every boundary for type, length, format, and range.
 - Invalid input is rejected and never processed or persisted.
 - No secrets or credentials are required for the validation flow.
 - Validation logic is easy to review and does not rely on unsafe rendering.
+- Validation errors are safe, user-friendly, and do not leak stack traces or internal implementation detail.
+- The validation flow uses only necessary, maintained dependencies.
 
 ## Out of scope
 - Complex client-side rule engine beyond the stated validation cases.

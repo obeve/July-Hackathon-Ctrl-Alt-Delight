@@ -16,7 +16,7 @@ We are implementing this because users often want to understand not just whether
 
 ## Non-functional requirements
 - Accessibility: the sort control must have a clear label or accessible name, remain operable by keyboard with visible focus styling, and preserve a clear, understandable order for screen-reader and keyboard users without relying on colour alone.
-- Security: sorting must use the validated data already displayed; the sort order must be derived from trusted values and must not expose or mutate data outside the intended view.
+- Security: sorting must use the validated data already displayed; the sort order must be derived from trusted values and must not expose or mutate data outside the intended view; any unexpected sort failure must surface a safe message rather than exposing internal details.
 - Performance / reliability: sorting should remain quick for the sample data set.
 
 ## Acceptance criteria
@@ -30,6 +30,8 @@ We are implementing this because users often want to understand not just whether
 - The sort order does not expose or mutate data outside the intended view.
 - The updated list is rendered safely without unsafe DOM injection.
 - No secrets or credentials are needed for the ordering logic.
+- Failures return generic, user-safe messages and do not leak stack traces or internal implementation detail.
+- The implementation uses only necessary, maintained dependencies.
 
 ## Out of scope
 - Multiple sorting options beyond amount.

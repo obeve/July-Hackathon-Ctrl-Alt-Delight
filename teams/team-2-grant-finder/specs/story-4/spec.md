@@ -17,7 +17,7 @@ We are implementing this because a grant finder becomes much more useful when us
 
 ## Non-functional requirements
 - Accessibility: the eligible-only toggle must have a clear label or accessible name, be keyboard operable with a visible focus indicator, and announce its state change to assistive technology; the page should remain understandable without relying on colour alone and should meet WCAG 2.2 AA expectations for contrast and target size.
-- Security: the filter must not expose or alter data outside the current view; the filter state must be validated and handled safely without introducing new input or unsafe rendering paths.
+- Security: the filter must not expose or alter data outside the current view; the filter state must be validated and handled safely without introducing new input or unsafe rendering paths; any unexpected failure must surface a safe message rather than leaking internal detail.
 - Performance / reliability: filtering should update immediately for the sample data set.
 
 ## Acceptance criteria
@@ -31,6 +31,8 @@ We are implementing this because a grant finder becomes much more useful when us
 - Hidden results are not exposed through the UI or data flow.
 - The filter does not introduce unsafe rendering or untrusted input paths.
 - No secrets or credentials are required for the filter behavior.
+- Failures or edge cases return generic, user-safe messages and do not leak internal implementation detail.
+- The implementation uses only necessary, maintained dependencies.
 
 ## Out of scope
 - Saving filter preferences between sessions.

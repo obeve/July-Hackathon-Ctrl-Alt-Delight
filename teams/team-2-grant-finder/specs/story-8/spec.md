@@ -16,7 +16,7 @@ We are implementing this because public-facing decision-support tools need to be
 
 ## Non-functional requirements
 - Accessibility: the guidance and disclaimer must be readable by screen readers, use semantic heading and content structure, and not rely on visual styling alone; any status or emphasis should also be understandable without colour alone.
-- Security: the content must be static and safe to display; no secrets, credentials, or untrusted user data should be embedded in the disclaimer or surrounding guidance, and output must be rendered safely.
+- Security: the content must be static and safe to display; no secrets, credentials, or untrusted user data should be embedded in the disclaimer or surrounding guidance, and output must be rendered safely through encoded output or safe UI components; any unexpected rendering or display failure must stay user-safe and avoid exposing internal details.
 - Performance / reliability: the guidance should load without slowing the main experience.
 
 ## Acceptance criteria
@@ -30,6 +30,8 @@ We are implementing this because public-facing decision-support tools need to be
 - No secrets, credentials, or untrusted user data are embedded in the content.
 - The content is rendered through safe UI output mechanisms.
 - The disclaimer does not introduce unsafe links, scripts, or data exposure.
+- Display failures return generic, user-safe messages and do not leak stack traces or internal implementation detail.
+- The implementation uses only necessary, maintained dependencies.
 
 ## Out of scope
 - Formal legal disclaimer wording.

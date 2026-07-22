@@ -16,7 +16,7 @@ We are implementing this because the grant finder should support curiosity and f
 
 ## Non-functional requirements
 - Accessibility: each details link must have descriptive text, be keyboard reachable, show a clear focus state, and use semantic link markup; the target page should preserve a logical heading structure and accessible navigation for screen-reader users.
-- Security: the link must not rely on live websites in tests; the destination must be a safe local fixture or in-app route, and no secrets or credentials should be exposed through the link or surrounding content.
+- Security: the link must not rely on live websites in tests; the destination must be a safe local fixture or in-app route, and no secrets or credentials should be exposed through the link or surrounding content; any navigation or rendering failure must remain safe and user-friendly without leaking internal details.
 - Performance / reliability: the page should load quickly from the local fixture content.
 
 ## Acceptance criteria
@@ -30,6 +30,8 @@ We are implementing this because the grant finder should support curiosity and f
 - No secrets, credentials, or personal data are exposed through the link target.
 - The destination page is rendered safely and does not rely on live external content.
 - No unsafe query parameters or user-controlled data are used in navigation.
+- Navigation failures return generic, user-safe messages and do not leak stack traces or internal implementation detail.
+- The implementation uses only necessary, maintained dependencies.
 
 ## Out of scope
 - Deep-linking to live grant websites.
