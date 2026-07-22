@@ -30,3 +30,8 @@ A user can sort grants by dollar amount to see the largest opportunities first.
 
 ## Open questions
 - Should the default order remain eligibility-first even when sorting is applied?
+
+## Implementation notes
+- Added an accessible `select` control labelled "Sort results" in `GrantFinder.razor` to toggle between the default eligibility-first ordering and a highest-first amount ordering.
+- Sorting is performed client-side on a copy of the already-evaluated `EligibilityResult` list using `OrderByDescending(r => r.Grant.Amount)` so source fixtures are not mutated and only validated values are used.
+- The results heading includes the active sort when applied ("— sorted by amount").
