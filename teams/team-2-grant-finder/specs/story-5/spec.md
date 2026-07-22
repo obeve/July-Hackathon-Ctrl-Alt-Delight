@@ -3,6 +3,12 @@
 ## Summary
 A user can sort grants by dollar amount to see the largest opportunities first.
 
+## What this is for
+This feature exists so users can compare grant opportunities by size and quickly identify the most valuable options. The goal is to support better prioritisation when several grants appear relevant.
+
+## Why we are implementing it
+We are implementing this because users often want to understand not just whether a grant matches, but which opportunities are the most significant. Sorting by amount adds a simple way to compare possibilities and make stronger decisions.
+
 ## Functional requirements
 1. The page must provide a sort option for grant amount.
 2. When selected, grants must reorder from highest to lowest amount.
