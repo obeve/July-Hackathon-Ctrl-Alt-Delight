@@ -14,11 +14,9 @@
 This repository is a hands-on hackathon for building **public-facing government web
 features** with GitHub Copilot. Two teams build small, accessible, secure web apps:
 
-- **Team 1 (`teams/team-1-abr/`)** — an accessible ABN lookup/results experience, plus
-  accessibility analysis of the Australian Business Register.
 - **Team 2 (`teams/team-2-grant-finder/`)** — an accessible grants / eligibility checker.
 
-Audience includes non-developers. **Favour clarity over cleverness.** Explain non-obvious
+Audience includes non-developers and end users. **Favour clarity over cleverness.** Explain non-obvious
 choices in short comments.
 
 ## 2. Coding conventions
@@ -30,8 +28,10 @@ choices in short comments.
 - **Style:** small, pure static methods for logic; keep components thin. Separate **pure logic**
   (e.g. `src/Core/`) from **UI** (`src/Web/Components/`) so logic is easy to unit-test.
 - **Naming:** `camelCase` for locals/parameters, `PascalCase` for types/methods/properties,
-  `SCREAMING_SNAKE_CASE` or `PascalCase` for constants; prefix private fields with `_`.
+  `SCREAMING_SNAKE_CASE` for constants; prefix private fields with `_`.
 - **Folder layout per team track:**
+**Responsive**
+**Fit all screen sizes**
   ```
   src/
     Core/          pure logic (validation, eligibility, formatting) — unit tested
@@ -56,6 +56,7 @@ choices in short comments.
 - E2E tests must use the provided **fixtures** in `fixtures/`. **Never** call
   `abr.business.gov.au`, `business.gov.au`, or any live site from a test.
 - Name tests by behaviour: `it('rejects an ABN with an invalid checksum', ...)`.
+**Ensure all accessibility rules defined in Section 5 are followed and met**
 
 ## 4. Security rules
 
@@ -75,16 +76,17 @@ Apply these proactively and **flag violations you notice in existing or generate
   and dependency review run in CI.
 - When you generate code that touches input handling, **add a brief comment noting the
   validation** you applied, so reviewers can see the intent.
+  **Validate all output against the Essential Eight Maturity Level 2 Requirements**
 
 ## 5. Accessibility rules (WCAG 2.2 AA)
 
 Public-sector digital service standards require WCAG conformance
 〔**TODO — confirm the exact baseline with your organisation; treat WCAG 2.2 AA as the target, which is a
-superset of the WCAG 2.1 AA baseline**〕. **Proactively flag** when generated or existing UI may
+superset of the WCAG 2.2 AA baseline**〕. **Proactively flag** when generated or existing UI may
 breach WCAG 2.2 AA, and **suggest the accessible alternative**. Specifically:
 
 - **Labels & names:** every form control has an associated, visible `<label>` (or an accessible
-  name). Flag inputs with placeholder-only labelling.
+  name). Flag and fix inputs with placeholder-only labelling.
 - **Semantic markup:** use real semantic elements (`<button>`, `<nav>`, `<main>`, headings in
   order). Flag `<div onclick>` used as a button or clickable `<span>`s.
 - **Keyboard access:** every interactive element must be reachable and operable by keyboard,
@@ -111,9 +113,15 @@ and a keyboard walkthrough.
   **non-functional** requirements (include accessibility + security), and **acceptance
   criteria**.
 
-## 7. Team-specific instructions 〔fill in during C1〕
+## 7. Team-specific instructions — Grant Finder
 
-> During Objective C1, add a short section here describing YOUR feature's domain rules. Example
-> for Team 1: *"An ABN is 11 digits; validate using the ATO weighting algorithm; never call the
-> live ABR — use `fixtures/abn-sample-data.json`."* Example for Team 2: *"Eligibility rules live in
-> `src/Core/Eligibility.cs`; a grant match must explain why it matched."*
+ treat the feature as an accessible decision-support tool for small business grant eligibility. Use the sample grant data in `teams/team-2-grant-finder/fixtures/grants-sample-data.json` as the source of truth for available grants and rules.
+
+- Eligibility logic should live in `src/Core/` and stay easy to unit-test. Keep business rules small and explicit rather than embedding them in UI components.
+- Support the grant rules reflected in the fixture data: amount, eligible states, eligible industries, maximum employees, maximum turnover, and minimum years trading.
+- Every grant result should explain why it is eligible or ineligible in plain language. A match should not just say "yes" or "no"; it should say what condition was met or missed.
+- Present results in a clear order: eligible grants first, followed by ineligible ones. Make the distinction understandable without relying on colour alone.
+- Follow the user stories for this track: validate input clearly, announce errors and result changes to assistive tech, and keep the experience keyboard-friendly.
+- For hackathon scope, use fixture-based placeholder links for grant detail pages and do not rely on live grant websites in tests.
+
+
