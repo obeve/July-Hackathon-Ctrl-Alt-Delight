@@ -3,6 +3,12 @@
 ## Summary
 A user receives clear, specific validation feedback when a field is missing or invalid.
 
+## What this is for
+This feature exists so users can understand exactly what information is missing or incorrect before they submit their profile. The goal is to reduce confusion and help users correct issues quickly.
+
+## Why we are implementing it
+We are implementing this because a grant-finder form should guide users through the process instead of failing silently or returning unclear errors. Clear validation improves completion rates, accessibility, and trust in the tool.
+
 ## Functional requirements
 1. The form must validate required fields such as state and industry.
 2. The form must validate numeric fields and reject negative or non-numeric values.
@@ -10,7 +16,7 @@ A user receives clear, specific validation feedback when a field is missing or i
 
 ## Non-functional requirements
 - Accessibility: validation messages must be linked to the relevant field with appropriate ARIA attributes, announced to assistive technology, and presented without relying on colour alone; interactive controls must remain keyboard operable with visible focus indicators and clear labels or accessible names.
-- Security: invalid input must not be processed or stored; validation must occur at the boundary for type, length, format, and range; any validation logic should be easy to review and should not require secrets or external credentials.
+- Security: invalid input must not be processed or stored; validation must occur at every boundary for type, length, format, and range; any validation logic should be easy to review and should not require secrets or external credentials; malformed input must not cause crashes or expose implementation detail through error messages.
 - Performance / reliability: validation should appear immediately and not block the page.
 
 ## Acceptance criteria
@@ -21,10 +27,12 @@ A user receives clear, specific validation feedback when a field is missing or i
 - Given invalid input, when the form is processed, then the value is rejected before it is used or persisted.
 
 ## Security checklist
-- Validation occurs at the boundary for type, length, format, and range.
+- Validation occurs at every boundary for type, length, format, and range.
 - Invalid input is rejected and never processed or persisted.
 - No secrets or credentials are required for the validation flow.
 - Validation logic is easy to review and does not rely on unsafe rendering.
+- Validation errors are safe, user-friendly, and do not leak stack traces or internal implementation detail.
+- The validation flow uses only necessary, maintained dependencies.
 
 ## Out of scope
 - Complex client-side rule engine beyond the stated validation cases.

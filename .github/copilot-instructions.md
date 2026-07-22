@@ -30,8 +30,6 @@ choices in short comments.
 - **Naming:** `camelCase` for locals/parameters, `PascalCase` for types/methods/properties,
   `SCREAMING_SNAKE_CASE` for constants; prefix private fields with `_`.
 - **Folder layout per team track:**
-**Responsive**
-**Fit all screen sizes**
   ```
   src/
     Core/          pure logic (validation, eligibility, formatting) — unit tested
@@ -42,8 +40,8 @@ choices in short comments.
   tests/e2e/       Playwright specs (*.spec.ts)
   fixtures/        static sample data — NEVER call live sites
   ```
-- Prefer standard library / platform APIs over new dependencies. If you add a dependency,
-  justify it in a comment or ADR.
+- **Responsive:** build for mobile first, then scale up. Layouts should work on small screens without horizontal scrolling, content should remain readable at common breakpoints, and interactive controls should be large enough for touch and keyboard use.
+- **Accessibility:** follow WCAG 2.2 AA. Use semantic markup, visible labels, keyboard operability, focus indicators, and ARIA roles/attributes to announce dynamic changes. Avoid relying on colour alone to convey meaning.
 
 ## 3. Testing expectations
 
