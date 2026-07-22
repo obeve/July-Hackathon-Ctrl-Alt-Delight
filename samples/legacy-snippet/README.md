@@ -8,6 +8,7 @@ it into clean, typed, tested, behaviour-preserving code — **without changing w
 
 - Added a short walkthrough of how the Team 2 grant-finder stories were turned into implementation-ready specs.
 - Included a simple run guide for the Blazor grant-finder app so the workshop flow is easier to follow.
+- Added a link to the end-user guide for the grant-finder experience.
 - Kept the legacy snippet exercise intact as the main refactoring example.
 
 ## The scenario
@@ -30,6 +31,8 @@ each spec with accessibility, security, and responsive requirements. The flow wa
 5. Use the fixture-based sample data in [../../teams/team-2-grant-finder/fixtures/grants-sample-data.json](../../teams/team-2-grant-finder/fixtures/grants-sample-data.json) as the source of truth for eligibility rules and sample outcomes.
 
 This approach keeps the work grounded in a real user need while making the implementation tasks easier to review and build.
+
+For a simple end-user walkthrough, see [../../teams/team-2-grant-finder/docs/user-guide.md](../../teams/team-2-grant-finder/docs/user-guide.md).
 
 ## ADR-style summary
 
