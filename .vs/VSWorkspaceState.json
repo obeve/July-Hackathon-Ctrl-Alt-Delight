@@ -1,0 +1,15 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\.github",
+    "\\.github\\prompts",
+    "\\teams",
+    "\\teams\\team-2-grant-finder",
+    "\\teams\\team-2-grant-finder\\specs",
+    "\\teams\\team-2-grant-finder\\specs\\story-4",
+    "\\teams\\team-2-grant-finder\\src",
+    "\\teams\\team-2-grant-finder\\src\\Web"
+  ],
+  "SelectedNode": "\\teams\\team-2-grant-finder\\team-2-grant-finder.sln",
+  "PreviewInSolutionExplorer": false
+}
