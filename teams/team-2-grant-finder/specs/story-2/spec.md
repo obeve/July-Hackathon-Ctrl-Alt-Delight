@@ -36,6 +36,3 @@ We are implementing this because a grant-finder form should guide users through 
 
 ## Out of scope
 - Complex client-side rule engine beyond the stated validation cases.
-
-## Open questions
-- Should all fields be required, or only a subset?

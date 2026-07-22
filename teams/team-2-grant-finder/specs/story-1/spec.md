@@ -14,6 +14,8 @@ We are implementing this because the core value of the grant finder is helping a
 2. The system must evaluate the profile against the sample grant rules and show a ranked list of grants.
 3. Each result must show the grant amount and a plain-language explanation of why it matches or does not match.
 4. The form must use visible labels and remain usable with keyboard input.
+5. Replace the State and Industry fields from dropdowns to checkboxes.
+6. The State and Industry fields must be mandatory.
 
 ## Non-functional requirements
 - Accessibility: all form controls and interactive elements must have visible labels or accessible names, be operable by keyboard with visible focus indicators, use semantic markup, and announce relevant status updates or errors through ARIA live regions or alert roles; meaning must not rely on colour alone and the interface should meet WCAG 2.2 AA contrast and target-size expectations.
@@ -37,6 +39,3 @@ We are implementing this because the core value of the grant finder is helping a
 ## Out of scope
 - Live grant data integration.
 - Account-based persistence.
-
-## Open questions
-- Which fields are mandatory for every user?

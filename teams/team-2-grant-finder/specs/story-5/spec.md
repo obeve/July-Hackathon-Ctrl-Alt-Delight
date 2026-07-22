@@ -13,6 +13,7 @@ We are implementing this because users often want to understand not just whether
 1. The page must provide a sort option for grant amount.
 2. When selected, grants must reorder from highest to lowest amount.
 3. The sorted view must keep the eligible/ineligible distinction clear.
+4. The default order must remain eligibility-first even when sorting is applied.
 
 ## Non-functional requirements
 - Accessibility: the sort control must have a clear label or accessible name, remain operable by keyboard with visible focus styling, and preserve a clear, understandable order for screen-reader and keyboard users without relying on colour alone.
@@ -35,9 +36,7 @@ We are implementing this because users often want to understand not just whether
 
 ## Out of scope
 - Multiple sorting options beyond amount.
-
-## Open questions
-- Should the default order remain eligibility-first even when sorting is applied?
+- Exporting, sharing, or downloading results as a report.
 
 ## Implementation notes
 - Added an accessible `select` control labelled "Sort results" in `GrantFinder.razor` to toggle between the default eligibility-first ordering and a highest-first amount ordering.
