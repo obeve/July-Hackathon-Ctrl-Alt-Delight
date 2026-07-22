@@ -1,4 +1,4 @@
-@page "/"
+﻿@page "/"
 @using Team2GrantFinder.Core
 
 @*
@@ -104,18 +104,15 @@
         {
             var eligibleCount = _results.Count(r => r.Eligible);
 
-            <div class="results-controls" style="display:flex;align-items:center;gap:0.75rem;">
-                <!-- Accessible toggle button replacing the checkbox. Aligned with flexbox. -->
-                <button type="button"
-                        class="toggle-button"
-                        style="width:44px;height:24px;border-radius:16px;border:1px solid #9aa0a6;padding:2px;background:@(_eligibleOnly ? "#2e7d32" : "#fff");display:inline-flex;align-items:center;cursor:pointer;"
-                        aria-pressed="@(_eligibleOnly.ToString().ToLower())"
-                        aria-controls="results"
-                        @onclick="ToggleEligibleOnly">
-                    <span class="visually-hidden">Show only eligible grants</span>
-                    <span style="width:20px;height:20px;border-radius:50%;background:#fff;display:inline-block;transition:transform .15s;transform:translateX(@((_eligibleOnly ? 20 : 0))px);"></span>
-                </button>
-                <label class="toggle-label" style="margin:0;">Eligible only</label>
+            <div class="results-controls">
+                <label class="checkbox-label">
+                    <input type="checkbox"
+                           role="switch"
+                           aria-checked="@(_eligibleOnly.ToString().ToLower())"
+                           aria-controls="results"
+                           @bind="_eligibleOnly" />
+                    eligible only
+                </label>
 
                 <div class="sort-control">
                     <label for="sort-select">Sort results</label>
@@ -214,10 +211,6 @@
     {
         // The select binding will update `_sort`; trigger a re-render and keep focus visible.
         StateHasChanged();
-    }
-    private void ToggleEligibleOnly()
-    {
-        _eligibleOnly = !_eligibleOnly;
     }
 
     private string AriaInvalid(string field) => _errors.ContainsKey(field) ? "true" : "false";

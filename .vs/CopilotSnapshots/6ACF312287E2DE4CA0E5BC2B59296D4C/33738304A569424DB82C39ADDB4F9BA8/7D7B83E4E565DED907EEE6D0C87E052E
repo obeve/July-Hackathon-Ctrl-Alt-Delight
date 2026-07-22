@@ -1,4 +1,4 @@
-@page "/"
+﻿@page "/"
 @using Team2GrantFinder.Core
 
 @*
@@ -115,7 +115,7 @@
                     <span class="visually-hidden">Show only eligible grants</span>
                     <span style="width:20px;height:20px;border-radius:50%;background:#fff;display:inline-block;transition:transform .15s;transform:translateX(@((_eligibleOnly ? 20 : 0))px);"></span>
                 </button>
-                <label class="toggle-label" style="margin:0;">Eligible only</label>
+                <label class="toggle-label" style="margin:0;">eligible only</label>
 
                 <div class="sort-control">
                     <label for="sort-select">Sort results</label>
@@ -214,10 +214,6 @@
     {
         // The select binding will update `_sort`; trigger a re-render and keep focus visible.
         StateHasChanged();
-    }
-    private void ToggleEligibleOnly()
-    {
-        _eligibleOnly = !_eligibleOnly;
     }
 
     private string AriaInvalid(string field) => _errors.ContainsKey(field) ? "true" : "false";
