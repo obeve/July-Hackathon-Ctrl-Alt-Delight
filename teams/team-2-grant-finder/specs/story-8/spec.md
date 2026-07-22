@@ -9,13 +9,21 @@ A first-time user receives brief guidance and a clear disclaimer that the tool i
 3. The disclaimer must be programmatically associated so assistive technology can discover it.
 
 ## Non-functional requirements
-- Accessibility: the guidance and disclaimer must be readable by screen readers and not rely on visual styling alone.
-- Security: the content must be static and safe to display.
+- Accessibility: the guidance and disclaimer must be readable by screen readers, use semantic heading and content structure, and not rely on visual styling alone; any status or emphasis should also be understandable without colour alone.
+- Security: the content must be static and safe to display; no secrets, credentials, or untrusted user data should be embedded in the disclaimer or surrounding guidance, and output must be rendered safely.
 - Performance / reliability: the guidance should load without slowing the main experience.
 
 ## Acceptance criteria
 - Given the page loads, when the user reads the introduction, then they understand what to enter and that the results are indicative only.
 - Given the disclaimer is present, when assistive technology reads the page, then it can identify the disclaimer content.
+- Given the guidance is displayed, when the user navigates by keyboard, then the content is reachable in a logical order and remains readable.
+- Given the disclaimer content is rendered, when it is displayed, then it is treated as safe static content and does not expose sensitive information.
+
+## Security checklist
+- The guidance and disclaimer content is static and safe to display.
+- No secrets, credentials, or untrusted user data are embedded in the content.
+- The content is rendered through safe UI output mechanisms.
+- The disclaimer does not introduce unsafe links, scripts, or data exposure.
 
 ## Out of scope
 - Formal legal disclaimer wording.

@@ -10,13 +10,21 @@ A user can enter a business profile and see which sample grants they may be elig
 4. The form must use visible labels and remain usable with keyboard input.
 
 ## Non-functional requirements
-- Accessibility: forms must be keyboard accessible and use visible labels and clear focus states.
-- Security: input must be validated before use and no personal data should be persisted beyond the current session.
+- Accessibility: all form controls and interactive elements must have visible labels or accessible names, be operable by keyboard with visible focus indicators, use semantic markup, and announce relevant status updates or errors through ARIA live regions or alert roles; meaning must not rely on colour alone and the interface should meet WCAG 2.2 AA contrast and target-size expectations.
+- Security: all input must be validated at the boundary for type, length, format, and range before use; no secrets should be embedded in code or configuration; no personal data should be persisted beyond the current session; user-supplied content must be rendered safely without unsafe HTML or direct DOM injection.
 - Performance / reliability: the experience should respond quickly for the sample data set.
 
 ## Acceptance criteria
 - Given a complete and valid profile, when the user submits the form, then a list of grants is shown with eligible grants first.
 - Given a grant result, when the user reviews it, then the amount and explanation are visible.
+- Given the form is displayed, when the user navigates it by keyboard, then focus remains visible and moves in a logical order.
+- Given user input is supplied, when the form is processed, then it is validated before use and no unsafe rendering is introduced.
+
+## Security checklist
+- Input is validated for type, length, format, and range before use.
+- No secrets or credentials are embedded in the UI, config, or sample data.
+- User content is rendered safely without unsafe HTML or direct DOM injection.
+- Personal or business data is kept in memory only for the current session.
 
 ## Out of scope
 - Live grant data integration.
