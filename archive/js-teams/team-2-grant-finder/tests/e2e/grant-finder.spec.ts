@@ -13,7 +13,7 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Grant finder', () => {
   test('shows matching grants with explanations for a valid profile', async ({
-    page,
+    zpage,
   }) => {
     await page.goto('/');
 

@@ -36,26 +36,36 @@
             <label for="field-state">State or territory</label>
             <select id="field-state"
                     @bind="_form.State"
-                    aria-invalid="@AriaInvalid("state")">
+                    aria-invalid="@AriaInvalid("state")"
+                    aria-describedby="@ErrorDescription("state")">
                 <option value="">Choose…</option>
                 @foreach (var state in Eligibility.States)
                 {
                     <option value="@state">@state</option>
                 }
             </select>
+            @if (GetError("state") is { } stateError)
+            {
+                <p id="@ErrorId("state")" class="error">@stateError</p>
+            }
         </div>
 
         <div class="field">
             <label for="field-industry">Industry</label>
             <select id="field-industry"
                     @bind="_form.Industry"
-                    aria-invalid="@AriaInvalid("industry")">
+                    aria-invalid="@AriaInvalid("industry")"
+                    aria-describedby="@ErrorDescription("industry")">
                 <option value="">Choose…</option>
                 @foreach (var industry in Eligibility.Industries)
                 {
                     <option value="@industry">@industry</option>
                 }
             </select>
+            @if (GetError("industry") is { } industryError)
+            {
+                <p id="@ErrorId("industry")" class="error">@industryError</p>
+            }
         </div>
 
         <NumberField Id="field-employees"
@@ -187,7 +197,11 @@
 
     private string AriaInvalid(string field) => _errors.ContainsKey(field) ? "true" : "false";
 
+    private string? ErrorDescription(string field) => GetError(field) is null ? null : ErrorId(field);
+
     private string? GetError(string field) => _errors.TryGetValue(field, out var message) ? message : null;
+
+    private string ErrorId(string field) => $"{field}-error";
 
     private void HandleSubmit()
     {
