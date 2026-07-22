@@ -36,4 +36,5 @@ We are implementing this because public-facing decision-support tools need to be
 
 ## Out of scope
 - Formal legal disclaimer wording.
+- Formal legal advice, compliance certification, or official endorsement of grant eligibility
 
