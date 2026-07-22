@@ -3,6 +3,12 @@
 ## Summary
 A first-time user receives brief guidance and a clear disclaimer that the tool is indicative rather than official advice.
 
+## What this is for
+This feature exists so new users understand what the tool does, how to use it, and the limits of the results. The goal is to set expectations clearly and reduce misunderstanding at the start of the experience.
+
+## Why we are implementing it
+We are implementing this because public-facing decision-support tools need to be transparent about purpose and reliability. Clear guidance and a disclaimer make the service easier to trust and easier to use responsibly.
+
 ## Functional requirements
 1. The page must include short introductory guidance explaining what to enter.
 2. The page must include a disclaimer that the results are indicative only.

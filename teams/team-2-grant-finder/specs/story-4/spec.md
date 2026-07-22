@@ -3,10 +3,17 @@
 ## Summary
 A user can focus on grants they are eligible for by toggling a filter.
 
+## What this is for
+This feature exists so users can narrow the results to the grants that are most relevant to their profile. The goal is to reduce visual noise and help users focus on actionable opportunities.
+
+## Why we are implementing it
+We are implementing this because a grant finder becomes much more useful when users can quickly isolate the options that actually match their circumstances. This story improves decision-making by making the most relevant results easier to find.
+
 ## Functional requirements
 1. The page must provide a toggle labelled “eligible only”.
 2. When enabled, the view must hide ineligible grants.
 3. The result count must always show and update when the filter changes.
+4. The toggle must be On by default
 
 ## Non-functional requirements
 - Accessibility: the eligible-only toggle must have a clear label or accessible name, be keyboard operable with a visible focus indicator, and announce its state change to assistive technology; the page should remain understandable without relying on colour alone and should meet WCAG 2.2 AA expectations for contrast and target size.
@@ -29,4 +36,4 @@ A user can focus on grants they are eligible for by toggling a filter.
 - Saving filter preferences between sessions.
 
 ## Open questions
-- Should the toggle default to off or on?
+- 

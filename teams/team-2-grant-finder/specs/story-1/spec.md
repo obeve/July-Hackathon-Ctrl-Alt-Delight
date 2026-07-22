@@ -3,6 +3,12 @@
 ## Summary
 A user can enter a business profile and see which sample grants they may be eligible for, with eligible grants shown first.
 
+## What this is for
+This feature exists so users can quickly enter a business profile and understand which sample grants may be relevant to them. The goal is to make the grant-finder experience clear, guided, and useful from the first interaction.
+
+## Why we are implementing it
+We are implementing this because the core value of the grant finder is helping a small business user identify likely funding opportunities without needing specialist knowledge. This story creates the foundation for the experience by turning a profile into a useful, ranked result list.
+
 ## Functional requirements
 1. The page must allow the user to enter business details including state, industry, employee count, turnover, and years trading.
 2. The system must evaluate the profile against the sample grant rules and show a ranked list of grants.

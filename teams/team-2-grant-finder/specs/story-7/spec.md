@@ -3,6 +3,12 @@
 ## Summary
 A user can open a placeholder details page for each grant to learn more.
 
+## What this is for
+This feature exists so users can move from a shortlist of grants to a simple details view without leaving the experience. The goal is to make the tool feel more complete and give users a clear next step.
+
+## Why we are implementing it
+We are implementing this because the grant finder should support curiosity and follow-up, not just initial eligibility checks. A details link helps users explore the opportunity in a safe, controlled way while keeping the hackathon scope lightweight.
+
 ## Functional requirements
 1. Each grant result must include a descriptive link to its details page.
 2. The link must open a placeholder or fixture page for the hackathon.

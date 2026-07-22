@@ -3,6 +3,12 @@
 ## Summary
 A user can keep their entered profile in the form while they test a few scenarios during the same session.
 
+## What this is for
+This feature exists so users can explore a few scenarios without re-entering the same information repeatedly. The goal is to make the experience feel efficient and easy to experiment with.
+
+## Why we are implementing it
+We are implementing this because people often refine their business profile over several attempts while comparing outcomes. Preserving the current profile during the session reduces friction and helps the user focus on the results rather than the form entry.
+
 ## Functional requirements
 1. The form must retain entered values after the user submits a profile.
 2. The user must be able to edit one field and resubmit without losing the rest of the profile.

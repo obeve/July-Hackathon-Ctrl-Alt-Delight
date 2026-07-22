@@ -3,6 +3,12 @@
 ## Summary
 A user can understand which eligibility rule caused a grant to be ineligible.
 
+## What this is for
+This feature exists so small business users can understand not just whether they qualify for a grant, but why they do or do not qualify. The goal is to reduce confusion, support better decision-making, and make the grant finder feel more helpful and transparent.
+
+## Why we are implementing it
+We are implementing this because the core value of the grant finder is not just showing results, but helping users interpret those results in plain language. This story turns a simple yes/no outcome into an explanation that can guide the user toward the next step or a better-fit grant.
+
 ## Functional requirements
 1. Each grant result must explain the reason for eligibility or ineligibility in plain language.
 2. Ineligible grants must clearly state the rule or condition that was not met.

@@ -3,6 +3,12 @@
 ## Summary
 A user receives clear, specific validation feedback when a field is missing or invalid.
 
+## What this is for
+This feature exists so users can understand exactly what information is missing or incorrect before they submit their profile. The goal is to reduce confusion and help users correct issues quickly.
+
+## Why we are implementing it
+We are implementing this because a grant-finder form should guide users through the process instead of failing silently or returning unclear errors. Clear validation improves completion rates, accessibility, and trust in the tool.
+
 ## Functional requirements
 1. The form must validate required fields such as state and industry.
 2. The form must validate numeric fields and reject negative or non-numeric values.
