@@ -17,6 +17,7 @@ We are implementing this because people often refine their business profile over
 - Accessibility: the restored form must remain keyboard accessible, preserve visible focus states, and keep labels and error messaging clear and programmatically associated so assistive technology can understand the current state.
 - Security: profile values must remain in memory only and not be persisted beyond the session; any restored values must be handled as untrusted input and validated again before use; no secrets or credentials should be required or stored; any session-state error must produce a safe message rather than exposing internal detail.
 - Performance / reliability: the form should update quickly when values change.
+- Performance: The session state must be cleared on page refresh
 
 ## Acceptance criteria
 - Given the user has submitted once, when results are shown, then the entered values remain in the form.
@@ -35,5 +36,3 @@ We are implementing this because people often refine their business profile over
 ## Out of scope
 - Local storage or server-side persistence.
 
-## Open questions
-- Should the session state be cleared on page refresh?

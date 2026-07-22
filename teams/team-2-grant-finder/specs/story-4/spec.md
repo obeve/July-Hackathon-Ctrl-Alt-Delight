@@ -37,5 +37,3 @@ We are implementing this because a grant finder becomes much more useful when us
 ## Out of scope
 - Saving filter preferences between sessions.
 
-## Open questions
-- 

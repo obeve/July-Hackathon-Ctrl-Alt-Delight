@@ -36,5 +36,3 @@ We are implementing this because the grant finder should support curiosity and f
 ## Out of scope
 - Deep-linking to live grant websites.
 
-## Open questions
-- Should detail pages be separate fixture pages or simple in-app routes?
